@@ -14,7 +14,6 @@ const BlogPost = () => {
       const response = await fetch(`${config.apiUrl}/posts/${postid}`);
       const data = await response.json();
 
-      console.log(data);
       setBlogPost(data);
     };
 

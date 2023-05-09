@@ -8,6 +8,7 @@ import AllCategories from "./pages/AllCategories";
 import AllTags from "./pages/AllTags";
 import BlogPost from "./pages/BlogPost";
 import AllComments from "./pages/AllComments";
+import CategoryDetail from "./pages/CategoryDetail";
 
 // components
 import SidebarLinks from "./components/SidebarLinks";
@@ -33,6 +34,8 @@ function App() {
 
             <Route path="/posts/:postid" element={<BlogPost />} />
             <Route path="/posts/:postid/comments" element={<AllComments />} />
+
+            <Route path="/categories/:categoryid" element={<CategoryDetail />} />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>
