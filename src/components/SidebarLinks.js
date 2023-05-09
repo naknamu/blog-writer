@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const SidebarLink = styled.div`
   display: grid;
@@ -9,11 +9,10 @@ const SidebarLink = styled.div`
 `;
 
 const SidebarWrapper = styled.ul`
-
   margin: 0;
 
   li {
-    list-style-type: none; 
+    list-style-type: none;
     padding-block: 10px;
   }
 
@@ -22,23 +21,36 @@ const SidebarWrapper = styled.ul`
   }
 `;
 
-
 const SidebarLinks = () => {
-    return (
-      <SidebarLink>
-        <SidebarWrapper>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/posts">All Blogs</Link></li>
-          <li><Link to="/categories">All Categories</Link></li>
-          <li><Link to="/tags">All Tags</Link></li>
-        </SidebarWrapper>
-        <SidebarWrapper>
-          <li><Link to="/">Create new blog post</Link></li>
-          <li><Link to="/">Create new category</Link></li>
-          <li><Link to="/">Create new tag</Link></li>
-        </SidebarWrapper>
-      </SidebarLink>
-      );
-  };
-  
-  export default SidebarLinks;
+  return (
+    <SidebarLink>
+      <SidebarWrapper>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/posts">All Blogs</Link>
+        </li>
+        <li>
+          <Link to="/categories">All Categories</Link>
+        </li>
+        <li>
+          <Link to="/tags">All Tags</Link>
+        </li>
+      </SidebarWrapper>
+      <SidebarWrapper>
+        <li>
+          <Link to="/">Create new blog post</Link>
+        </li>
+        <li>
+          <Link to="/">Create new category</Link>
+        </li>
+        <li>
+          <Link to="/">Create new tag</Link>
+        </li>
+      </SidebarWrapper>
+    </SidebarLink>
+  );
+};
+
+export default SidebarLinks;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const BorderedTable = styled.table`
   border-collapse: collapse;
@@ -24,22 +24,22 @@ const BorderedTable = styled.table`
 `;
 
 const Table = ({ header, data }) => {
-    return ( 
-            <BorderedTable>
-            <thead>
-                <tr>
-                    <th>{header}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item) => (
-                    <tr key={item._id}>
-                        <td>{item.title || item.name}</td>
-                    </tr>
-                ))}
-            </tbody>
-            </BorderedTable>
-     );
-}
- 
+  return (
+    <BorderedTable>
+      <thead>
+        <tr>
+          <th>{header}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item) => (
+          <tr key={item._id}>
+            <td>{item.title || item.name}</td>
+          </tr>
+        ))}
+      </tbody>
+    </BorderedTable>
+  );
+};
+
 export default Table;

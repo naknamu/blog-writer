@@ -4,33 +4,34 @@ import config from "../config";
 import styled from "styled-components";
 
 const CategoriesStyled = styled.div`
-    display: grid;
-    gap: 1rem;
+  display: grid;
+  gap: 1rem;
 `;
 
 const AllCategories = () => {
+  const [categories, setCategories] = useState([]);
 
-    const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      const response = await fetch(`${config.apiUrl}/categories`);
+      const data = await response.json();
 
-    useEffect(() => {
-        const fetchAllCategories = async() => {
-            const response = await fetch(`${config.apiUrl}/categories`);
-            const data = await response.json();
-            
-            setCategories(data);
-        }
+      setCategories(data);
+    };
 
-        fetchAllCategories();
-    }, [])
+    fetchAllCategories();
+  }, []);
 
-    return ( 
-        <CategoriesStyled>
-            <h1>All categories</h1>
-            {categories.map((category) => (
-                <li key={category._id}><Link to={`/categories/${category._id}`}>{category.name}</Link></li>
-            ))}
-        </CategoriesStyled>
-     );
-}
- 
+  return (
+    <CategoriesStyled>
+      <h1>All categories</h1>
+      {categories.map((category) => (
+        <li key={category._id}>
+          <Link to={`/categories/${category._id}`}>{category.name}</Link>
+        </li>
+      ))}
+    </CategoriesStyled>
+  );
+};
+
 export default AllCategories;
