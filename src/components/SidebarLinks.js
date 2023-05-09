@@ -30,15 +30,11 @@ const SidebarLinks = () => {
           <li><Link to="/posts">All Blogs</Link></li>
           <li><Link to="/categories">All Categories</Link></li>
           <li><Link to="/tags">All Tags</Link></li>
-          <li><Link to="/comments">All Comments</Link></li>
-          <li><Link to="/users">All Users</Link></li>
         </SidebarWrapper>
         <SidebarWrapper>
           <li><Link to="/">Create new blog post</Link></li>
           <li><Link to="/">Create new category</Link></li>
           <li><Link to="/">Create new tag</Link></li>
-          <li><Link to="/">Create new comment</Link></li>
-          <li><Link to="/">Create new user</Link></li>
         </SidebarWrapper>
       </SidebarLink>
       );

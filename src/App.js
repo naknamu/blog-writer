@@ -5,13 +5,10 @@ import styled from "styled-components";
 import Home from "./pages/Home";
 import AllBlogs from "./pages/AllBlogs";
 import AllCategories from "./pages/AllCategories";
+import AllTags from "./pages/AllTags";
 
 // components
 import SidebarLinks from "./components/SidebarLinks";
-import AllTags from "./pages/AllTags";
-import AllComments from "./pages/AllComments";
-import AllUsers from "./pages/AllUsers";
-
 
 const AppWrapper = styled.div`
   display: flex;
@@ -33,8 +30,6 @@ function App() {
               <Route path="/posts" element={<AllBlogs />} />
               <Route path="/categories" element={<AllCategories />} />
               <Route path="/tags" element={<AllTags />} />
-              <Route path="/comments" element={<AllComments />} />
-              <Route path="/users" element={<AllUsers />} />
             </Routes>
           </PagesWrapper>
       </BrowserRouter>
