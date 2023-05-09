@@ -16,7 +16,6 @@ const AllBlogs = () => {
             const response = await fetch(`${config.apiUrl}/posts`);
             const data = await response.json();
 
-            console.log(data);
             setBlogs(data);
         }
 

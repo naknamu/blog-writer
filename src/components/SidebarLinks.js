@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SidebarLink = styled.div`
   display: grid;
+  position: fixed;
   gap: 1rem;
   margin-top: 1rem;
 `;

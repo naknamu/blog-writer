@@ -6,17 +6,19 @@ import Home from "./pages/Home";
 import AllBlogs from "./pages/AllBlogs";
 import AllCategories from "./pages/AllCategories";
 import AllTags from "./pages/AllTags";
+import BlogPost from "./pages/BlogPost";
+import AllComments from "./pages/AllComments";
 
 // components
 import SidebarLinks from "./components/SidebarLinks";
 
 const AppWrapper = styled.div`
-  display: flex;
-  gap: 5rem;
+
 `;
 
 const PagesWrapper = styled.div`
-  padding-inline: 2rem;
+  padding-inline: 15rem;
+  margin-bottom: 5rem;
 `;
 
 function App() {
@@ -30,6 +32,9 @@ function App() {
               <Route path="/posts" element={<AllBlogs />} />
               <Route path="/categories" element={<AllCategories />} />
               <Route path="/tags" element={<AllTags />} />
+
+              <Route path="/posts/:postid" element={<BlogPost />} />
+              <Route path="/posts/:postid/comments" element={<AllComments />} />
             </Routes>
           </PagesWrapper>
       </BrowserRouter>
