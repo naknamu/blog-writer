@@ -36,12 +36,12 @@ const BlogPost = () => {
       </p>
       <p>
         <b>Category: </b>
-        {blogPost.category.name}
+        <Link to={`/categories/${blogPost.category._id}`}>{blogPost.category.name}</Link>
       </p>
       <b>Tags: </b>
       {blogPost.tags.map((tag) => (
         <div key={tag._id} style={{ display: "inline-block" }}>
-          {tag.name},
+          <Link to={`/tags/${tag._id}`}>{tag.name}</Link> ,
         </div>
       ))}
       <p>
