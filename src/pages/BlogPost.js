@@ -2,8 +2,24 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import config from "../config";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const { DateTime } = require("luxon");
+
+const PublishBtn = styled.button`
+  margin-top: 2rem;
+  padding: 1rem;
+  background: ${props => props.isPublished ? "hsla(344, 53%, 62%, 1)" : "green" };
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
 
 const BlogPost = () => {
   const { postid } = useParams();
@@ -49,7 +65,10 @@ const BlogPost = () => {
         {blogPost.content}
       </p>
 
-      <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
+      <div><Link to={`/posts/${postid}/comments/`}>See All Comments</Link></div>
+
+      <PublishBtn isPublished={blogPost.published}>{(blogPost.published) ? 'Unpublish' : 'Publish'}</PublishBtn>
+
     </div>
   );
 };
