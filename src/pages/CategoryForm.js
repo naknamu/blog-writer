@@ -1,0 +1,76 @@
+import styled from "styled-components";
+
+const FormWrapper = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+`;
+
+const InputField = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    label {
+        padding-block: 1rem;
+    }
+
+    input, textarea {
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 16px;
+        font-family: inherit;
+        border: 1px solid #fff;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border: 1px solid hsl(175, 98%, 24%);
+    }
+`;
+
+const SubmitBtn = styled.button`
+    align-self: flex-start;
+    padding: 1rem 2rem;
+    border: none;
+    background: hsl(175, 98%, 24%);
+    color: white;
+    font-size: inherit;
+    font-weight: 700;
+    border-radius: 8px;
+    margin-top: 1rem;
+
+    :hover {
+        opacity: 0.8;
+    }
+`;
+
+const CategoryForm = () => {
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log("Submitted");
+    }
+
+    return ( 
+        <FormWrapper onSubmit={(e) => handleSubmit(e)}>
+
+            <h1>Create a Category</h1>
+
+            <InputField>
+                <label htmlFor="name">Category Name:</label>
+                <input type="text" name="name" id="name" />
+            </InputField>
+
+            <InputField>
+                <label htmlFor="detail">Category Detail:</label>
+                <textarea name="detail" id="detail" cols="30" rows="10"></textarea>    
+            </InputField>
+
+            <SubmitBtn type="submit">Submit</SubmitBtn>
+
+        </FormWrapper>
+     );
+}
+ 
+export default CategoryForm;

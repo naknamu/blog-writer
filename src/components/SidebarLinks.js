@@ -43,7 +43,7 @@ const SidebarLinks = () => {
           <Link to="/">Create new blog post</Link>
         </li>
         <li>
-          <Link to="/">Create new category</Link>
+          <Link to="/category/create">Create new category</Link>
         </li>
         <li>
           <Link to="/">Create new tag</Link>

@@ -51,9 +51,7 @@ const BlogPost = () => {
       publishedStatus = false;
     } else {
       publishedStatus = true;
-    }
-
-    console.log(publishedStatus);
+    } 
 
     setIsPublished(publishedStatus);
 
@@ -75,9 +73,13 @@ const BlogPost = () => {
     });
     const data = await response.json();
 
-    console.log(data);
-    // Fetch updated blog post
-    fetchBlogPost();
+    if (response.ok) {
+      // Fetch updated blog post
+      fetchBlogPost();
+    } else {
+      console.error(data.error)
+    }
+
   }
 
   return (
