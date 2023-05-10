@@ -8,6 +8,9 @@ const CategoryDetail = () => {
     const [category, setCategory] = useState(null);
     const [blogPosts, setBlogPosts] = useState(null);
 
+    // Create a new DOMParser
+    const parser = new DOMParser();
+
     useEffect(() => {
         const fetchCategory = async() => {
             const response = await fetch(`${config.apiUrl}/categories/${categoryid}`);
@@ -26,7 +29,11 @@ const CategoryDetail = () => {
     return ( 
         <div className="category">
             <h1>Category: {category.name}</h1>
-            <p><b>Detail:</b> {category.detail}</p>
+            <div><b>Detail:</b> 
+                <div style={{ whiteSpace: 'pre-line' }}>
+                    {parser.parseFromString(category.detail, 'text/html').documentElement.textContent}
+                </div>
+            </div>
             <h2>Blog posts under this category:</h2>
             {blogPosts.map((blog) => (
                 <li key={blog._id}>
