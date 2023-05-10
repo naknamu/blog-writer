@@ -1,11 +1,28 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import config from "../config";
 import styled from "styled-components";
+
+const { DateTime } = require("luxon");
 
 const CommentsStyled = styled.div`
   display: grid;
   gap: 1rem;
+`;
+
+const CommentCard = styled.div`
+  border: 1px solid #000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+const DeleteBtn = styled.button`
+  align-self: flex-end;
+`;
+
+const CommentWrapper = styled.div`
+  transform: translateY(-1rem);
 `;
 
 const AllComments = () => {
@@ -13,24 +30,45 @@ const AllComments = () => {
 
   const [comments, setComments] = useState([]);
 
+  const fetchAllComments = async () => {
+    const response = await fetch(`${config.apiUrl}/posts/${postid}/comments`);
+    const data = await response.json();
+
+    setComments(data);
+  };
+
   useEffect(() => {
-    const fetchAllComments = async () => {
-      const response = await fetch(`${config.apiUrl}/posts/${postid}/comments`);
-      const data = await response.json();
-
-      setComments(data);
-    };
-
     fetchAllComments();
+  // eslint-disable-next-line
   }, [postid]);
+
+  const handleDelete = async(commentid) => {
+    const response = await fetch(`${config.apiUrl}/posts/${postid}/comment/${commentid}/delete`, {
+      method: 'POST'
+    }) 
+
+    const data = await response.json();
+    console.log(data);
+
+    // fetch again all comments
+    fetchAllComments();
+  }
 
   return (
     <CommentsStyled>
       <h1>All comments</h1>
       {comments.map((comment) => (
-        <li key={comment._id}>
-          <Link to={`/comments/${comment._id}`}>{comment.name}</Link>
-        </li>
+        <CommentCard key={comment._id} onClick={() => handleDelete(comment._id)}>
+          <DeleteBtn>
+            Delete
+          </DeleteBtn>
+          <CommentWrapper>
+            <div><b>{comment.name}</b></div>
+            <p>{comment.message}</p>
+            <div>{DateTime.fromJSDate(new Date(comment.createdAt))
+            .toLocaleString(DateTime.DATETIME_MED)}</div>
+          </CommentWrapper>
+        </CommentCard>
       ))}
     </CommentsStyled>
   );
