@@ -19,7 +19,7 @@ const CategoryDetail = () => {
         fetchCategory();
     }, [categoryid])
 
-    if (!category || !blogPosts) {
+    if (!category && !blogPosts) {
         return <div>Loading....</div>
     }
 
@@ -27,12 +27,11 @@ const CategoryDetail = () => {
         <div className="category">
             <h1>Category: {category.name}</h1>
             <p><b>Detail:</b> {category.detail}</p>
-            <h2>Blog posts under these category:</h2>
+            <h2>Blog posts under this category:</h2>
             {blogPosts.map((blog) => (
                 <li key={blog._id}>
                     <Link to={`/posts/${blog._id}`}>{blog.title}</Link>
                 </li>
-
             ))}
 
         </div>

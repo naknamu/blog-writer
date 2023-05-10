@@ -9,6 +9,7 @@ import AllTags from "./pages/AllTags";
 import BlogPost from "./pages/BlogPost";
 import AllComments from "./pages/AllComments";
 import CategoryDetail from "./pages/CategoryDetail";
+import TagDetail from "./pages/TagDetail";
 
 // components
 import SidebarLinks from "./components/SidebarLinks";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/posts/:postid/comments" element={<AllComments />} />
 
             <Route path="/categories/:categoryid" element={<CategoryDetail />} />
+            <Route path="/tags/:tagid" element={<TagDetail />} />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>
