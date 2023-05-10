@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styled from "styled-components";
+import config from "../config";
 
 const FormWrapper = styled.form`
     display: flex;
@@ -46,10 +48,35 @@ const SubmitBtn = styled.button`
 
 const CategoryForm = () => {
 
-    const handleSubmit = (e) => {
+    const [name, setName] = useState("");
+    const [detail, setDetail] = useState("");
+
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         console.log("Submitted");
+
+        const newCategory = {
+            name,
+            detail
+        }
+
+        const response = await fetch(`${config.apiUrl}/category/create`, {
+            method: 'POST',
+            body: JSON.stringify(newCategory),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+
+        const data = await response.json();
+
+        if (response.ok) {
+            setName("");
+            setDetail("");
+        } else {
+            console.error(data.error)
+        }
     }
 
     return ( 
@@ -59,12 +86,12 @@ const CategoryForm = () => {
 
             <InputField>
                 <label htmlFor="name">Category Name:</label>
-                <input type="text" name="name" id="name" />
+                <input type="text" name="name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
             </InputField>
 
             <InputField>
                 <label htmlFor="detail">Category Detail:</label>
-                <textarea name="detail" id="detail" cols="30" rows="10"></textarea>    
+                <textarea name="detail" id="detail" cols="30" rows="10" value={detail} onChange={(e) => setDetail(e.target.value)}></textarea>    
             </InputField>
 
             <SubmitBtn type="submit">Submit</SubmitBtn>
