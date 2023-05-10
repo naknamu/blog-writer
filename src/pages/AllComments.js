@@ -17,8 +17,17 @@ const CommentCard = styled.div`
   flex-direction: column;
 `;
 
-const DeleteBtn = styled.button`
+const DeleteWrapper = styled.div`
   align-self: flex-end;
+  transform: scale(1.5);
+`;
+
+const DeleteBtn = styled.span`
+  cursor: pointer;
+
+  :hover {
+    color: red;
+  }
 `;
 
 const CommentWrapper = styled.div`
@@ -59,9 +68,11 @@ const AllComments = () => {
       <h1>All comments</h1>
       {comments.map((comment) => (
         <CommentCard key={comment._id} onClick={() => handleDelete(comment._id)}>
-          <DeleteBtn>
-            Delete
-          </DeleteBtn>
+          <DeleteWrapper>
+            <DeleteBtn className="material-symbols-outlined">
+              delete
+            </DeleteBtn>
+          </DeleteWrapper>
           <CommentWrapper>
             <div><b>{comment.name}</b></div>
             <p>{comment.message}</p>
