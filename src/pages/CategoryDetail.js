@@ -4,14 +4,13 @@ import config from "../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const CategoryDelete = styled.button`
+const DeleteBtn = styled.button`
   padding: 1rem 2rem;
   border: none;
   background: hsla(344, 53%, 62%, 1);
   font-size: inherit;
   font-weight: 700;
   border-radius: 8px;
-  margin-top: 2rem;
 
   :hover {
     opacity: 0.8;
@@ -20,6 +19,26 @@ const CategoryDelete = styled.button`
   a {
     color: white;
   }
+`;
+
+const UpdateBtn = styled.button`
+  padding: 1rem 2rem;
+  border: none;
+  background: hsl(175, 98%, 24%);
+  font-size: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+  color: white;
+
+  :hover {
+    opacity: 0.8;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
 `;
 
 const CategoryDetail = () => {
@@ -57,6 +76,10 @@ const CategoryDetail = () => {
     console.log(data);
   }
 
+  const handleUpdate = async (categoryid) => {
+
+  }
+
   return (
     <div className="category">
       <h1>Category: {category.name}</h1>
@@ -76,7 +99,12 @@ const CategoryDetail = () => {
         </li>
       ))}
 
-      <CategoryDelete onClick={() => handleDelete(category._id)}><Link to="/categories">Delete category</Link></CategoryDelete>
+      <ButtonWrapper>
+          <DeleteBtn onClick={() => handleDelete(category._id)}><Link to="/categories">Delete</Link></DeleteBtn>
+
+          <UpdateBtn onClick={() => handleUpdate(category._id)}><Link to={`/category/${category._id}/update`}>Update</Link></UpdateBtn>
+      </ButtonWrapper>
+
     </div>
   );
 };
