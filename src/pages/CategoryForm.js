@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import config from "../config";
+import ReactMarkdown from 'react-markdown';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {vscDarkPlus} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const FormWrapper = styled.form`
     display: flex;
@@ -46,6 +49,12 @@ const SubmitBtn = styled.button`
     }
 `;
 
+const MarkdownWrapper = styled.div`
+    background: #fff;
+    padding: 1rem;
+`;
+
+
 const CategoryForm = () => {
 
     const [name, setName] = useState("");
@@ -78,6 +87,7 @@ const CategoryForm = () => {
             console.error(data.error)
         }
     }
+    
 
     return ( 
         <FormWrapper onSubmit={(e) => handleSubmit(e)}>
@@ -93,6 +103,31 @@ const CategoryForm = () => {
                 <label htmlFor="detail">Category Detail:</label>
                 <textarea name="detail" id="detail" cols="30" rows="10" value={detail} onChange={(e) => setDetail(e.target.value)}></textarea>    
             </InputField>
+
+            <h2>Rendered Markdown</h2>
+            <MarkdownWrapper>
+                <ReactMarkdown
+                    children={detail}
+                    components={{
+                    code({node, inline, className, children, ...props}) {
+                        const match = /language-(\w+)/.exec(className || '')
+                        return !inline && match ? (
+                        <SyntaxHighlighter
+                            {...props}
+                            children={String(children).replace(/\n$/, '')}
+                            style={vscDarkPlus}
+                            language={match[1]}
+                            PreTag="div"
+                        />
+                        ) : (
+                        <code {...props} className={className}>
+                            {children}
+                        </code>
+                        )
+                    }
+                    }}
+                />
+            </MarkdownWrapper>
 
             <SubmitBtn type="submit">Submit</SubmitBtn>
 
