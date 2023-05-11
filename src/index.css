@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  /** COLORS **/
+  --pine-green: hsl(175, 98%, 24%);
+  --cinnamon-satin: hsla(344, 53%, 62%, 1);
+}
+
 html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
@@ -12,4 +18,8 @@ html {
 
 body {
   background-color: #eaf5fb;
+}
+
+a {
+  text-decoration: none;
 }

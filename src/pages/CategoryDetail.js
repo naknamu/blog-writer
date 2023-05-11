@@ -2,6 +2,25 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import config from "../config";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const CategoryDelete = styled.button`
+  padding: 1rem 2rem;
+  border: none;
+  background: hsla(344, 53%, 62%, 1);
+  font-size: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-top: 2rem;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+  a {
+    color: white;
+  }
+`;
 
 const CategoryDetail = () => {
   const { categoryid } = useParams();
@@ -26,6 +45,18 @@ const CategoryDetail = () => {
     return <div>Loading....</div>;
   }
 
+  const handleDelete = async (categoryid) => {
+    const response = await fetch(
+      `${config.apiUrl}/category/${categoryid}/delete`,
+      {
+        method: "POST",
+      }
+    );
+
+    const data = await response.json();
+    console.log(data);
+  }
+
   return (
     <div className="category">
       <h1>Category: {category.name}</h1>
@@ -44,6 +75,8 @@ const CategoryDetail = () => {
           <Link to={`/posts/${blog._id}`}>{blog.title}</Link>
         </li>
       ))}
+
+      <CategoryDelete onClick={() => handleDelete(category._id)}><Link to="/categories">Delete category</Link></CategoryDelete>
     </div>
   );
 };
