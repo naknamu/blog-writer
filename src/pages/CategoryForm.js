@@ -49,10 +49,6 @@ const SubmitBtn = styled.button`
   }
 `;
 
-const MarkdownWrapper = styled.div`
-  background: #fff;
-  padding: 1rem;
-`;
 
 const CategoryForm = () => {
   const [name, setName] = useState("");
@@ -114,9 +110,7 @@ const CategoryForm = () => {
       </InputField>
 
       <h2>Rendered Markdown</h2>
-      <MarkdownWrapper>
-        <Markdown markdown={detail} />
-      </MarkdownWrapper>
+      <Markdown markdown={detail} />
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>
