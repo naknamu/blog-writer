@@ -14,6 +14,7 @@ import TagDetail from "./pages/TagDetail";
 // components
 import SidebarLinks from "./components/SidebarLinks";
 import CategoryForm from "./pages/CategoryForm";
+import CategoryUpdateForm from "./pages/CategoryUpdateForm";
 
 const AppWrapper = styled.div``;
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="/tags/:tagid" element={<TagDetail />} />
 
             <Route path="/category/create" element={<CategoryForm />} />
+            <Route path="/category/:categoryid/update" element={<CategoryUpdateForm />} />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>

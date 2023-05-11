@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import config from "../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Markdown from "../components/Markdown";
 
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
@@ -33,6 +34,10 @@ const UpdateBtn = styled.button`
   :hover {
     opacity: 0.8;
   }
+
+  a {
+    color: white;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -45,9 +50,6 @@ const CategoryDetail = () => {
   const { categoryid } = useParams();
   const [category, setCategory] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
-
-  // Create a new DOMParser
-  const parser = new DOMParser();
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -76,21 +78,12 @@ const CategoryDetail = () => {
     console.log(data);
   }
 
-  const handleUpdate = async (categoryid) => {
-
-  }
-
   return (
     <div className="category">
       <h1>Category: {category.name}</h1>
       <div>
         <b>Detail:</b>
-        <div style={{ whiteSpace: "pre-line" }}>
-          {
-            parser.parseFromString(category.detail, "text/html").documentElement
-              .textContent
-          }
-        </div>
+        <Markdown markdown={category.detail} />
       </div>
       <h2>Blog posts under this category:</h2>
       {blogPosts.map((blog) => (
@@ -102,7 +95,7 @@ const CategoryDetail = () => {
       <ButtonWrapper>
           <DeleteBtn onClick={() => handleDelete(category._id)}><Link to="/categories">Delete</Link></DeleteBtn>
 
-          <UpdateBtn onClick={() => handleUpdate(category._id)}><Link to={`/category/${category._id}/update`}>Update</Link></UpdateBtn>
+          <UpdateBtn><Link to={`/category/${category._id}/update`}>Update</Link></UpdateBtn>
       </ButtonWrapper>
 
     </div>

@@ -104,7 +104,7 @@ const CategoryForm = () => {
           id="detail"
           cols="30"
           rows="10"
-          value={detail}
+          value={decodeURIComponent(detail)}
           onChange={(e) => setDetail(e.target.value)}
         ></textarea>
       </InputField>
