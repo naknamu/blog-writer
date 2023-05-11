@@ -9,7 +9,8 @@ const { DateTime } = require("luxon");
 const PublishBtn = styled.button`
   margin-top: 2rem;
   padding: 1rem;
-  background: ${props => props.isPublished ? " hsl(175, 98%, 24%)" : "hsla(344, 53%, 62%, 1)" };
+  background: ${(props) =>
+    props.isPublished ? " hsl(175, 98%, 24%)" : "hsla(344, 53%, 62%, 1)"};
   color: white;
   font-weight: 700;
   font-size: 1rem;
@@ -31,27 +32,26 @@ const BlogPost = () => {
     const data = await response.json();
 
     setBlogPost(data);
-    setIsPublished(data.published)
+    setIsPublished(data.published);
   };
 
   useEffect(() => {
     fetchBlogPost();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [postid]);
 
   if (!blogPost) {
     return <div>Loading....</div>;
   }
 
-  const handlePublish = async() => {
-
+  const handlePublish = async () => {
     let publishedStatus = isPublished;
-    
+
     if (publishedStatus) {
       publishedStatus = false;
     } else {
       publishedStatus = true;
-    } 
+    }
 
     setIsPublished(publishedStatus);
 
@@ -62,14 +62,14 @@ const BlogPost = () => {
       tags: blogPost.tags,
       published: publishedStatus,
       image_url: blogPost.image_url,
-    }
+    };
 
     const response = await fetch(`${config.apiUrl}/post/${postid}/update`, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(updateBlogPost),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     });
     const data = await response.json();
 
@@ -77,10 +77,9 @@ const BlogPost = () => {
       // Fetch updated blog post
       fetchBlogPost();
     } else {
-      console.error(data.error)
+      console.error(data.error);
     }
-
-  }
+  };
 
   return (
     <div className="blog-post">
@@ -94,7 +93,9 @@ const BlogPost = () => {
       </p>
       <p>
         <b>Category: </b>
-        <Link to={`/categories/${blogPost.category._id}`}>{blogPost.category.name}</Link>
+        <Link to={`/categories/${blogPost.category._id}`}>
+          {blogPost.category.name}
+        </Link>
       </p>
       <b>Tags: </b>
       {blogPost.tags.map((tag) => (
@@ -107,10 +108,16 @@ const BlogPost = () => {
         {blogPost.content}
       </p>
 
-      <div><Link to={`/posts/${postid}/comments/`}>See All Comments</Link></div>
+      <div>
+        <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
+      </div>
 
-      <PublishBtn isPublished={blogPost.published} onClick={() => handlePublish()}>{(blogPost.published) ? 'Published' : 'Not Published'}</PublishBtn>
-
+      <PublishBtn
+        isPublished={blogPost.published}
+        onClick={() => handlePublish()}
+      >
+        {blogPost.published ? "Published" : "Not Published"}
+      </PublishBtn>
     </div>
   );
 };

@@ -48,36 +48,45 @@ const AllComments = () => {
 
   useEffect(() => {
     fetchAllComments();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [postid]);
 
-  const handleDelete = async(commentid) => {
-    const response = await fetch(`${config.apiUrl}/posts/${postid}/comment/${commentid}/delete`, {
-      method: 'POST'
-    }) 
+  const handleDelete = async (commentid) => {
+    const response = await fetch(
+      `${config.apiUrl}/posts/${postid}/comment/${commentid}/delete`,
+      {
+        method: "POST",
+      }
+    );
 
     const data = await response.json();
     console.log(data);
 
     // fetch again all comments
     fetchAllComments();
-  }
+  };
 
   return (
     <CommentsStyled>
       <h1>All comments</h1>
       {comments.map((comment) => (
-        <CommentCard key={comment._id} onClick={() => handleDelete(comment._id)}>
+        <CommentCard
+          key={comment._id}
+          onClick={() => handleDelete(comment._id)}
+        >
           <DeleteWrapper>
-            <DeleteBtn className="material-symbols-outlined">
-              delete
-            </DeleteBtn>
+            <DeleteBtn className="material-symbols-outlined">delete</DeleteBtn>
           </DeleteWrapper>
           <CommentWrapper>
-            <div><b>{comment.name}</b></div>
+            <div>
+              <b>{comment.name}</b>
+            </div>
             <p>{comment.message}</p>
-            <div>{DateTime.fromJSDate(new Date(comment.createdAt))
-            .toLocaleString(DateTime.DATETIME_MED)}</div>
+            <div>
+              {DateTime.fromJSDate(new Date(comment.createdAt)).toLocaleString(
+                DateTime.DATETIME_MED
+              )}
+            </div>
           </CommentWrapper>
         </CommentCard>
       ))}

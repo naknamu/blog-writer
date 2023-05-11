@@ -37,7 +37,10 @@ function App() {
             <Route path="/posts/:postid" element={<BlogPost />} />
             <Route path="/posts/:postid/comments" element={<AllComments />} />
 
-            <Route path="/categories/:categoryid" element={<CategoryDetail />} />
+            <Route
+              path="/categories/:categoryid"
+              element={<CategoryDetail />}
+            />
             <Route path="/tags/:tagid" element={<TagDetail />} />
 
             <Route path="/category/create" element={<CategoryForm />} />
