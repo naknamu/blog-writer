@@ -72,10 +72,9 @@ const AllComments = () => {
       {comments.map((comment) => (
         <CommentCard
           key={comment._id}
-          onClick={() => handleDelete(comment._id)}
         >
           <DeleteWrapper>
-            <DeleteBtn className="material-symbols-outlined">delete</DeleteBtn>
+            <DeleteBtn className="material-symbols-outlined" onClick={() => handleDelete(comment._id)}>delete</DeleteBtn>
           </DeleteWrapper>
           <CommentWrapper>
             <div>
