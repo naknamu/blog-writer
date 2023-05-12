@@ -27,7 +27,7 @@ const AllCategories = () => {
       <h1>All categories</h1>
       {categories.map((category) => (
         <li key={category._id}>
-          <Link to={`/categories/${category._id}`}>{category.name}</Link>
+          <Link to={`/categories/${category._id}/What-is-${category.name}`}>{category.name}</Link>
         </li>
       ))}
     </CategoriesStyled>

@@ -96,7 +96,7 @@ const CategoryUpdateForm = () => {
     const data = await response.json();
 
     if (response.ok) {
-      navigate(`/categories/${categoryid}`);
+      navigate(`/categories/${categoryid}/What-is-${categoryid}`);
     } else {
       console.error(data.error);
     }

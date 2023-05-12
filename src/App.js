@@ -41,7 +41,7 @@ function App() {
             <Route path="/posts/:postid/comments" element={<AllComments />} />
 
 
-            <Route path="/tags/:tagid" element={<TagDetail />} />
+            <Route path="/tags/:tagid/:title" element={<TagDetail />} />
             <Route path="/tag/create" element={<TagForm />} />
             <Route
               path="/tag/:tagid/update"
@@ -49,7 +49,7 @@ function App() {
             />
 
             <Route
-              path="/categories/:categoryid"
+              path="/categories/:categoryid/:title"
               element={<CategoryDetail />}
             />
             <Route path="/category/create" element={<CategoryForm />} />

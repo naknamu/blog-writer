@@ -89,7 +89,6 @@ const TagDetail = () => {
     <div className="tag-detail">
       <h1>Tag: {tag.name}</h1>
       <div>
-        <b>Detail: </b>
         <Markdown markdown={tag.detail} />
       </div>
       <h2>Blog posts under this tag: </h2>

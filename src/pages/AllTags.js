@@ -27,7 +27,7 @@ const AllTags = () => {
       <h1>All tags</h1>
       {tags.map((tag) => (
         <li key={tag._id}>
-          <Link to={`/tags/${tag._id}`}>{tag.name}</Link>
+          <Link to={`/tags/${tag._id}/What-is-${tag.name}`}>{tag.name}</Link>
         </li>
       ))}
     </TagsStyled>
