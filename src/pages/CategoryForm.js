@@ -49,7 +49,6 @@ const SubmitBtn = styled.button`
   }
 `;
 
-
 const CategoryForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");

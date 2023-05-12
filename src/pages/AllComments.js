@@ -70,11 +70,14 @@ const AllComments = () => {
     <CommentsStyled>
       <h1>All comments</h1>
       {comments.map((comment) => (
-        <CommentCard
-          key={comment._id}
-        >
+        <CommentCard key={comment._id}>
           <DeleteWrapper>
-            <DeleteBtn className="material-symbols-outlined" onClick={() => handleDelete(comment._id)}>delete</DeleteBtn>
+            <DeleteBtn
+              className="material-symbols-outlined"
+              onClick={() => handleDelete(comment._id)}
+            >
+              delete
+            </DeleteBtn>
           </DeleteWrapper>
           <CommentWrapper>
             <div>

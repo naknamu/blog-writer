@@ -45,7 +45,10 @@ function App() {
             <Route path="/tags/:tagid" element={<TagDetail />} />
 
             <Route path="/category/create" element={<CategoryForm />} />
-            <Route path="/category/:categoryid/update" element={<CategoryUpdateForm />} />
+            <Route
+              path="/category/:categoryid/update"
+              element={<CategoryUpdateForm />}
+            />
           </Routes>
         </PagesWrapper>
       </BrowserRouter>

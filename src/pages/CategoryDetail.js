@@ -76,7 +76,7 @@ const CategoryDetail = () => {
 
     const data = await response.json();
     console.log(data);
-  }
+  };
 
   return (
     <div className="category">
@@ -93,11 +93,14 @@ const CategoryDetail = () => {
       ))}
 
       <ButtonWrapper>
-          <DeleteBtn onClick={() => handleDelete(category._id)}><Link to="/categories">Delete</Link></DeleteBtn>
+        <DeleteBtn onClick={() => handleDelete(category._id)}>
+          <Link to="/categories">Delete</Link>
+        </DeleteBtn>
 
-          <UpdateBtn><Link to={`/category/${category._id}/update`}>Update</Link></UpdateBtn>
+        <UpdateBtn>
+          <Link to={`/category/${category._id}/update`}>Update</Link>
+        </UpdateBtn>
       </ButtonWrapper>
-
     </div>
   );
 };
