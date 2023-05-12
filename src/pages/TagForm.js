@@ -1,7 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
-import config from "../config";
 import Markdown from "../components/Markdown";
+import styled from "styled-components";
+import { useState } from "react";
+import config from "../config";
+import { useNavigate } from "react-router";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -50,42 +51,45 @@ const SubmitBtn = styled.button`
   }
 `;
 
-const CategoryForm = () => {
-  const [name, setName] = useState("");
-  const [detail, setDetail] = useState("");
+const TagForm = () => {
+    const [name, setName] = useState("");
+    const [detail, setDetail] = useState("");
+    const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const newCategory = {
-      name,
-      detail,
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const newTag = {
+          name,
+          detail,
+        };
+    
+        const response = await fetch(`${config.apiUrl}/tag/create`, {
+          method: "POST",
+          body: JSON.stringify(newTag),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+    
+        const data = await response.json();
+    
+        if (response.ok) {
+          setName("");
+          setDetail("");
+          // Redirect to list of tags
+          navigate("/tags");
+        } else {
+          console.error(data.error);
+        }
     };
 
-    const response = await fetch(`${config.apiUrl}/category/create`, {
-      method: "POST",
-      body: JSON.stringify(newCategory),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      setName("");
-      setDetail("");
-    } else {
-      console.error(data.error);
-    }
-  };
-
-  return (
+    return ( 
     <FormWrapper onSubmit={(e) => handleSubmit(e)}>
-      <h1>Create a Category</h1>
+      <h1>Create a Tag</h1>
 
       <InputField>
-        <label htmlFor="name">Category Name:</label>
+        <label htmlFor="name">Tag Name:</label>
         <input
           type="text"
           name="name"
@@ -96,7 +100,7 @@ const CategoryForm = () => {
       </InputField>
 
       <InputField>
-        <label htmlFor="detail">Category Detail:</label>
+        <label htmlFor="detail">Tag Detail:</label>
         <textarea
           name="detail"
           id="detail"
@@ -112,7 +116,7 @@ const CategoryForm = () => {
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>
-  );
-};
-
-export default CategoryForm;
+     );
+}
+ 
+export default TagForm;

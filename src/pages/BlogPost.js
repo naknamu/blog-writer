@@ -55,6 +55,8 @@ const BlogPost = () => {
 
     setIsPublished(publishedStatus);
 
+    console.log(blogPost);
+
     const updateBlogPost = {
       title: blogPost.title,
       content: blogPost.content,

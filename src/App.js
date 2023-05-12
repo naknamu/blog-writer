@@ -15,6 +15,8 @@ import TagDetail from "./pages/TagDetail";
 import SidebarLinks from "./components/SidebarLinks";
 import CategoryForm from "./pages/CategoryForm";
 import CategoryUpdateForm from "./pages/CategoryUpdateForm";
+import TagForm from "./pages/TagForm";
+import TagUpdateForm from "./pages/TagUpdateForm";
 
 const AppWrapper = styled.div``;
 
@@ -38,12 +40,18 @@ function App() {
             <Route path="/posts/:postid" element={<BlogPost />} />
             <Route path="/posts/:postid/comments" element={<AllComments />} />
 
+
+            <Route path="/tags/:tagid" element={<TagDetail />} />
+            <Route path="/tag/create" element={<TagForm />} />
+            <Route
+              path="/tag/:tagid/update"
+              element={<TagUpdateForm />}
+            />
+
             <Route
               path="/categories/:categoryid"
               element={<CategoryDetail />}
             />
-            <Route path="/tags/:tagid" element={<TagDetail />} />
-
             <Route path="/category/create" element={<CategoryForm />} />
             <Route
               path="/category/:categoryid/update"
