@@ -4,6 +4,9 @@ import { useState } from "react";
 import config from "../config";
 import { useNavigate } from "react-router";
 
+import SimpleMDE from 'react-simplemde-editor';
+import 'easymde/dist/easymde.min.css';
+
 const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -101,14 +104,7 @@ const TagForm = () => {
 
       <InputField>
         <label htmlFor="detail">Tag Detail:</label>
-        <textarea
-          name="detail"
-          id="detail"
-          cols="30"
-          rows="10"
-          value={decodeURIComponent(detail)}
-          onChange={(e) => setDetail(e.target.value)}
-        ></textarea>
+        <SimpleMDE value={detail} onChange={setDetail} />
       </InputField>
 
       <h2>Rendered Markdown</h2>
