@@ -4,7 +4,7 @@ import config from "../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import Markdown from "../components/Markdown";
+import MarkdownPreview from "../components/MarkdownPreview";
 
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
@@ -89,7 +89,8 @@ const TagDetail = () => {
     <div className="tag-detail">
       <h1>Tag: {tag.name}</h1>
       <div>
-        <Markdown markdown={tag.detail} />
+        <b>Detail:</b>
+        <MarkdownPreview markdown={tag.detail} />
       </div>
       <h2>Blog posts under this tag: </h2>
       {blogPosts.map((blog) => (

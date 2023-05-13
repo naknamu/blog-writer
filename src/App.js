@@ -17,6 +17,8 @@ import CategoryForm from "./pages/CategoryForm";
 import CategoryUpdateForm from "./pages/CategoryUpdateForm";
 import TagForm from "./pages/TagForm";
 import TagUpdateForm from "./pages/TagUpdateForm";
+import BlogForm from "./pages/BlogForm";
+import BlogUpdateForm from "./pages/BlogUpdateForm";
 
 const AppWrapper = styled.div``;
 
@@ -39,7 +41,8 @@ function App() {
 
             <Route path="/posts/:postid" element={<BlogPost />} />
             <Route path="/posts/:postid/comments" element={<AllComments />} />
-
+            <Route path="/post/create" element={<BlogForm />} />
+            <Route path="/posts/:postid/update" element={<BlogUpdateForm />} />
 
             <Route path="/tags/:tagid/:title" element={<TagDetail />} />
             <Route path="/tag/create" element={<TagForm />} />

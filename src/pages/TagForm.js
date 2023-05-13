@@ -1,11 +1,8 @@
-import Markdown from "../components/Markdown";
 import styled from "styled-components";
 import { useState } from "react";
 import config from "../config";
 import { useNavigate } from "react-router";
-
-import SimpleMDE from 'react-simplemde-editor';
-import 'easymde/dist/easymde.min.css';
+import MarkdownEditor from "../components/MarkdownEditor";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -22,8 +19,7 @@ const InputField = styled.div`
     font-weight: 700;
   }
 
-  input,
-  textarea {
+  input {
     padding: 1rem;
     border-radius: 8px;
     font-size: 16px;
@@ -31,8 +27,7 @@ const InputField = styled.div`
     border: 1px solid #fff;
   }
 
-  input:focus,
-  textarea:focus {
+  input:focus {
     outline: none;
     border: 1px solid hsl(175, 98%, 24%);
   }
@@ -104,11 +99,8 @@ const TagForm = () => {
 
       <InputField>
         <label htmlFor="detail">Tag Detail:</label>
-        <SimpleMDE value={detail} onChange={setDetail} />
+        <MarkdownEditor markdown={detail} handleChange={setDetail} />
       </InputField>
-
-      <h2>Rendered Markdown</h2>
-      <Markdown markdown={detail} />
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>

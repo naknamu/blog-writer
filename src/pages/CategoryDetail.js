@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import config from "../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Markdown from "../components/Markdown";
+import MarkdownPreview from "../components/MarkdownPreview";
 
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
@@ -83,7 +83,7 @@ const CategoryDetail = () => {
       <h1>Category: {category.name}</h1>
       <div>
         <b>Detail:</b>
-        <Markdown markdown={category.detail} />
+        <MarkdownPreview markdown={category.detail} />
       </div>
       <h2>Blog posts under this category:</h2>
       {blogPosts.map((blog) => (

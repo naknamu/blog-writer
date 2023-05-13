@@ -4,8 +4,9 @@ import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styled from "styled-components";
 
 const MarkdownWrapper = styled.div`
-  background: #fff;
+  background: rgb(13, 17, 23);
   padding: 1rem;
+  color: rgb(201, 209, 217);
 `;
 
 const Markdown = ({ markdown }) => {

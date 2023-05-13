@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import config from "../config";
-import Markdown from "../components/Markdown";
+import MarkdownEditor from "../components/MarkdownEditor";
+import { useNavigate } from "react-router";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -18,8 +19,7 @@ const InputField = styled.div`
     font-weight: 700;
   }
 
-  input,
-  textarea {
+  input {
     padding: 1rem;
     border-radius: 8px;
     font-size: 16px;
@@ -27,8 +27,7 @@ const InputField = styled.div`
     border: 1px solid #fff;
   }
 
-  input:focus,
-  textarea:focus {
+  input:focus {
     outline: none;
     border: 1px solid hsl(175, 98%, 24%);
   }
@@ -53,6 +52,7 @@ const SubmitBtn = styled.button`
 const CategoryForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,8 +73,7 @@ const CategoryForm = () => {
     const data = await response.json();
 
     if (response.ok) {
-      setName("");
-      setDetail("");
+      navigate("/categories")
     } else {
       console.error(data.error);
     }
@@ -97,18 +96,8 @@ const CategoryForm = () => {
 
       <InputField>
         <label htmlFor="detail">Category Detail:</label>
-        <textarea
-          name="detail"
-          id="detail"
-          cols="30"
-          rows="10"
-          value={decodeURIComponent(detail)}
-          onChange={(e) => setDetail(e.target.value)}
-        ></textarea>
+        <MarkdownEditor markdown={detail} handleChange={setDetail} />
       </InputField>
-
-      <h2>Rendered Markdown</h2>
-      <Markdown markdown={detail} />
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>

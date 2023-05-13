@@ -40,7 +40,7 @@ const SidebarLinks = () => {
       </SidebarWrapper>
       <SidebarWrapper>
         <li>
-          <Link to="/">Create new blog post</Link>
+          <Link to="/post/create">Create new blog post</Link>
         </li>
         <li>
           <Link to="/category/create">Create new category</Link>
