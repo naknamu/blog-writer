@@ -69,12 +69,9 @@ const TagDetail = () => {
   }
 
   const handleDelete = async (tagid) => {
-    const response = await fetch(
-      `${config.apiUrl}/tag/${tagid}/delete`,
-      {
-        method: "POST",
-      }
-    );
+    const response = await fetch(`${config.apiUrl}/tag/${tagid}/delete`, {
+      method: "POST",
+    });
 
     const data = await response.json();
     if (response.ok) {

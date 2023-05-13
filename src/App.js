@@ -46,10 +46,7 @@ function App() {
 
             <Route path="/tags/:tagid/:title" element={<TagDetail />} />
             <Route path="/tag/create" element={<TagForm />} />
-            <Route
-              path="/tag/:tagid/update"
-              element={<TagUpdateForm />}
-            />
+            <Route path="/tag/:tagid/update" element={<TagUpdateForm />} />
 
             <Route
               path="/categories/:categoryid/:title"

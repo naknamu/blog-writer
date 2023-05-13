@@ -73,7 +73,7 @@ const CategoryForm = () => {
     const data = await response.json();
 
     if (response.ok) {
-      navigate("/categories")
+      navigate("/categories");
     } else {
       console.error(data.error);
     }

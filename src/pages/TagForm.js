@@ -50,39 +50,39 @@ const SubmitBtn = styled.button`
 `;
 
 const TagForm = () => {
-    const [name, setName] = useState("");
-    const [detail, setDetail] = useState("");
-    const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [detail, setDetail] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const newTag = {
-          name,
-          detail,
-        };
-    
-        const response = await fetch(`${config.apiUrl}/tag/create`, {
-          method: "POST",
-          body: JSON.stringify(newTag),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-    
-        const data = await response.json();
-    
-        if (response.ok) {
-          setName("");
-          setDetail("");
-          // Redirect to list of tags
-          navigate("/tags");
-        } else {
-          console.error(data.error);
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newTag = {
+      name,
+      detail,
     };
 
-    return ( 
+    const response = await fetch(`${config.apiUrl}/tag/create`, {
+      method: "POST",
+      body: JSON.stringify(newTag),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setName("");
+      setDetail("");
+      // Redirect to list of tags
+      navigate("/tags");
+    } else {
+      console.error(data.error);
+    }
+  };
+
+  return (
     <FormWrapper onSubmit={(e) => handleSubmit(e)}>
       <h1>Create a Tag</h1>
 
@@ -104,7 +104,7 @@ const TagForm = () => {
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>
-     );
-}
- 
+  );
+};
+
 export default TagForm;

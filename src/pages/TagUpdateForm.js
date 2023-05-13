@@ -50,54 +50,49 @@ const SubmitBtn = styled.button`
 `;
 
 const TagUpdateForm = () => {
-    const { tagid } = useParams();
-    const navigate = useNavigate();
-    const [name, setName] = useState("");
-    const [detail, setDetail] = useState("");
+  const { tagid } = useParams();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [detail, setDetail] = useState("");
 
-    useEffect(() => {
-        const fetchTag = async () => {
-        const response = await fetch(
-            `${config.apiUrl}/tag/${tagid}/update`
-        );
-        const data = await response.json();
+  useEffect(() => {
+    const fetchTag = async () => {
+      const response = await fetch(`${config.apiUrl}/tag/${tagid}/update`);
+      const data = await response.json();
 
-        console.log(data);
-        setName(data.name);
-        setDetail(data.detail);
-        };
-
-        fetchTag();
-    }, [tagid]);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const updateTag = {
-          name,
-          detail,
-        };
-    
-        const response = await fetch(
-          `${config.apiUrl}/tag/${tagid}/update`,
-          {
-            method: "POST",
-            body: JSON.stringify(updateTag),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const data = await response.json();
-    
-        if (response.ok) {
-          navigate(`/tags/${tagid}/What-is-${name}`);
-        } else {
-          console.error(data.error);
-        }
+      console.log(data);
+      setName(data.name);
+      setDetail(data.detail);
     };
 
-    return ( 
+    fetchTag();
+  }, [tagid]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const updateTag = {
+      name,
+      detail,
+    };
+
+    const response = await fetch(`${config.apiUrl}/tag/${tagid}/update`, {
+      method: "POST",
+      body: JSON.stringify(updateTag),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      navigate(`/tags/${tagid}/What-is-${name}`);
+    } else {
+      console.error(data.error);
+    }
+  };
+
+  return (
     <FormWrapper onSubmit={(e) => handleSubmit(e)}>
       <h1>Update a Tag</h1>
 
@@ -119,7 +114,7 @@ const TagUpdateForm = () => {
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>
-    );
-}
- 
+  );
+};
+
 export default TagUpdateForm;

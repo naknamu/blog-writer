@@ -69,7 +69,7 @@ const BlogPost = () => {
   const { postid } = useParams();
   const [blogPost, setBlogPost] = useState(null);
   const [isPublished, setIsPublished] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const fetchBlogPost = async () => {
     const response = await fetch(`${config.apiUrl}/posts/${postid}`);
@@ -128,16 +128,13 @@ const BlogPost = () => {
   };
 
   const handleDelete = async (postid) => {
-    const response = await fetch(
-      `${config.apiUrl}/post/${postid}/delete`,
-      {
-        method: "POST",
-      }
-    );
+    const response = await fetch(`${config.apiUrl}/post/${postid}/delete`, {
+      method: "POST",
+    });
 
     const data = await response.json();
     if (response.ok) {
-      navigate("/posts")
+      navigate("/posts");
     } else {
       console.error(data.error);
     }
@@ -155,7 +152,9 @@ const BlogPost = () => {
       </p>
       <p>
         <b>Category: </b>
-        <Link to={`/categories/${blogPost.category._id}/What-is-${blogPost.category.name}`}>
+        <Link
+          to={`/categories/${blogPost.category._id}/What-is-${blogPost.category.name}`}
+        >
           {blogPost.category.name}
         </Link>
       </p>
@@ -170,7 +169,7 @@ const BlogPost = () => {
         <MarkdownPreview markdown={blogPost.content} />
       </div>
 
-      <div style={{marginTop: "2rem"}}>
+      <div style={{ marginTop: "2rem" }}>
         <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
       </div>
 
