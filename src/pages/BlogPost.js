@@ -11,7 +11,7 @@ const { DateTime } = require("luxon");
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
   border: none;
-  background: hsla(344, 53%, 62%, 1);
+  background: hsla(344, 53%, 52%, 1);
   font-size: inherit;
   font-weight: 700;
   border-radius: 8px;
@@ -46,14 +46,14 @@ const UpdateBtn = styled.button`
 const ButtonWrapper = styled.div`
   display: flex;
   gap: 2rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 `;
 
 const PublishBtn = styled.button`
-  margin-top: 2rem;
-  padding: 1rem;
+  width: fit-content;
+  padding: 12px 16px;
   background: ${(props) =>
-    props.isPublished ? " hsl(175, 98%, 24%)" : "hsla(344, 53%, 62%, 1)"};
+    props.isPublished ? "hsl(120, 50%, 30%)" : "hsla(344, 53%, 62%, 1)"};
   color: white;
   font-weight: 700;
   font-size: 1rem;
@@ -63,6 +63,13 @@ const PublishBtn = styled.button`
   :hover {
     opacity: 0.8;
   }
+`;
+
+const StatusWrapper = styled.div`
+  display: flex;
+  margin-block: 2rem;
+  gap: 1rem; 
+  align-items: center;
 `;
 
 const BlogPost = () => {
@@ -172,13 +179,16 @@ const BlogPost = () => {
       <div style={{ marginTop: "2rem" }}>
         <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
       </div>
-
-      <PublishBtn
+      
+      <StatusWrapper>
+        <b>Status:</b>
+        <PublishBtn
         isPublished={blogPost.published}
         onClick={() => handlePublish()}
-      >
-        {blogPost.published ? "Published" : "Not Published"}
-      </PublishBtn>
+        >
+          {blogPost.published ? "Published" : "Not Published"}
+        </PublishBtn>
+      </StatusWrapper>
 
       <ButtonWrapper>
         <DeleteBtn onClick={() => handleDelete(blogPost._id)}>
