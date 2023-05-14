@@ -68,7 +68,7 @@ const PublishBtn = styled.button`
 const StatusWrapper = styled.div`
   display: flex;
   margin-block: 2rem;
-  gap: 1rem; 
+  gap: 1rem;
   align-items: center;
 `;
 
@@ -179,12 +179,12 @@ const BlogPost = () => {
       <div style={{ marginTop: "2rem" }}>
         <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
       </div>
-      
+
       <StatusWrapper>
         <b>Status:</b>
         <PublishBtn
-        isPublished={blogPost.published}
-        onClick={() => handlePublish()}
+          isPublished={blogPost.published}
+          onClick={() => handlePublish()}
         >
           {blogPost.published ? "Published" : "Not Published"}
         </PublishBtn>

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import MarkdownEditor from "../components/MarkdownEditor";
 
-
 const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -139,7 +138,7 @@ const BlogUpdateForm = () => {
   };
 
   useEffect(() => {
-    const fetchPost = async() => {
+    const fetchPost = async () => {
       const response = await fetch(`${config.apiUrl}//post/${postid}/update`);
       const data = await response.json();
 
@@ -150,7 +149,7 @@ const BlogUpdateForm = () => {
       setBannerUrl(data.image_url);
 
       console.log(data);
-    }
+    };
 
     const fetchCategoriesAndTags = async () => {
       const [categories, tags] = await Promise.all([
@@ -163,9 +162,9 @@ const BlogUpdateForm = () => {
     };
 
     fetchPost();
-    
+
     fetchCategoriesAndTags();
-  }, [postid])
+  }, [postid]);
 
   return (
     <div>
