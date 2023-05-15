@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import config from "../config";
-import Markdown from "../components/Markdown";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
+import MarkdownEditor from "../components/MarkdownEditor";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -19,8 +20,7 @@ const InputField = styled.div`
     padding-block: 1rem;
   }
 
-  input,
-  textarea {
+  input {
     padding: 1rem;
     border-radius: 8px;
     font-size: 16px;
@@ -28,8 +28,7 @@ const InputField = styled.div`
     border: 1px solid #fff;
   }
 
-  input:focus,
-  textarea:focus {
+  input:focus {
     outline: none;
     border: 1px solid hsl(175, 98%, 24%);
   }
@@ -56,9 +55,7 @@ const CategoryUpdateForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
-
-  // Create a new DOMParser
-  const parser = new DOMParser();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -90,6 +87,7 @@ const CategoryUpdateForm = () => {
         body: JSON.stringify(updateCategory),
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${user.token}`
         },
       }
     );
@@ -119,21 +117,8 @@ const CategoryUpdateForm = () => {
 
       <InputField>
         <label htmlFor="detail">Category Detail:</label>
-        <textarea
-          name="detail"
-          id="detail"
-          cols="30"
-          rows="20"
-          value={
-            parser.parseFromString(detail, "text/html").documentElement
-              .textContent
-          }
-          onChange={(e) => setDetail(e.target.value)}
-        ></textarea>
+        <MarkdownEditor markdown={detail} handleChange={setDetail} />
       </InputField>
-
-      <h2>Rendered Markdown</h2>
-      <Markdown markdown={detail} />
 
       <SubmitBtn type="submit">Submit</SubmitBtn>
     </FormWrapper>

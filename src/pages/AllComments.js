@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import config from "../config";
 import styled from "styled-components";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const { DateTime } = require("luxon");
 
@@ -36,6 +37,7 @@ const CommentWrapper = styled.div`
 
 const AllComments = () => {
   const { postid } = useParams();
+  const { user } = useAuthContext();
 
   const [comments, setComments] = useState([]);
 
@@ -56,6 +58,9 @@ const AllComments = () => {
       `${config.apiUrl}/posts/${postid}/comment/${commentid}/delete`,
       {
         method: "POST",
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        },
       }
     );
 

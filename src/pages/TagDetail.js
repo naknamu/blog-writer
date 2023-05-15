@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import MarkdownPreview from "../components/MarkdownPreview";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
@@ -52,6 +53,7 @@ const TagDetail = () => {
   const [tag, setTag] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
   const navigate = useNavigate();
+  const { user } = useAuthContext();  
 
   useEffect(() => {
     const fetchTag = async () => {
@@ -71,6 +73,9 @@ const TagDetail = () => {
   const handleDelete = async (tagid) => {
     const response = await fetch(`${config.apiUrl}/tag/${tagid}/delete`, {
       method: "POST",
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      },
     });
 
     const data = await response.json();

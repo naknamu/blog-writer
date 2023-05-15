@@ -3,6 +3,7 @@ import config from "../config";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import MarkdownEditor from "../components/MarkdownEditor";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -91,6 +92,7 @@ const BlogForm = () => {
   const [checkedTags, setCheckedTags] = useState([]);
 
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const handleChange = (value) => {
     setContent(value);
@@ -112,6 +114,7 @@ const BlogForm = () => {
       body: JSON.stringify(newBlog),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 

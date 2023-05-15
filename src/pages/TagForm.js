@@ -3,6 +3,7 @@ import { useState } from "react";
 import config from "../config";
 import { useNavigate } from "react-router";
 import MarkdownEditor from "../components/MarkdownEditor";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -53,6 +54,7 @@ const TagForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuthContext();  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +69,7 @@ const TagForm = () => {
       body: JSON.stringify(newTag),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 

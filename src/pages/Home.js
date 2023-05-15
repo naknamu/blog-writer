@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import config from "../config";
 import styled from "styled-components";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const HomeStyled = styled.div``;
 
@@ -13,9 +14,9 @@ const Home = () => {
   const [comments, setComments] = useState(0);
   const [users, setUsers] = useState(0);
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+  const { user } = useAuthContext();
 
+  useEffect(() => {
     const fetchAllBlogs = async () => {
       const response = await fetch(config.apiUrl, {
         headers: {'Authorization': `Bearer ${user.token}`}
@@ -32,7 +33,7 @@ const Home = () => {
     if (user) {
       fetchAllBlogs();
     }
-  }, []);
+  }, [user]);
   return (
     <HomeStyled>
       <HomeWrapper>

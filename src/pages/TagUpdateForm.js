@@ -4,6 +4,7 @@ import config from "../config";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MarkdownEditor from "../components/MarkdownEditor";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -54,6 +55,7 @@ const TagUpdateForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
+  const { user } = useAuthContext();  
 
   useEffect(() => {
     const fetchTag = async () => {
@@ -81,6 +83,7 @@ const TagUpdateForm = () => {
       body: JSON.stringify(updateTag),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
     const data = await response.json();

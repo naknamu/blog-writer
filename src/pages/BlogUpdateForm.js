@@ -4,6 +4,7 @@ import config from "../config";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 import MarkdownEditor from "../components/MarkdownEditor";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -93,6 +94,7 @@ const BlogUpdateForm = () => {
   const [checkedTags, setCheckedTags] = useState([]);
 
   const navigate = useNavigate();
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,6 +112,7 @@ const BlogUpdateForm = () => {
       body: JSON.stringify(newBlog),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 
@@ -139,7 +142,7 @@ const BlogUpdateForm = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const response = await fetch(`${config.apiUrl}//post/${postid}/update`);
+      const response = await fetch(`${config.apiUrl}/post/${postid}/update`);
       const data = await response.json();
 
       setTitle(data.title);

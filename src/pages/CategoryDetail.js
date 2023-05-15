@@ -4,6 +4,8 @@ import config from "../config";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MarkdownPreview from "../components/MarkdownPreview";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useNavigate } from "react-router";
 
 const DeleteBtn = styled.button`
   padding: 1rem 2rem;
@@ -50,7 +52,9 @@ const CategoryDetail = () => {
   const { categoryid } = useParams();
   const [category, setCategory] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
-
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchCategory = async () => {
       const response = await fetch(`${config.apiUrl}/categories/${categoryid}`);
@@ -71,11 +75,18 @@ const CategoryDetail = () => {
       `${config.apiUrl}/category/${categoryid}/delete`,
       {
         method: "POST",
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        },
       }
     );
-
     const data = await response.json();
-    console.log(data);
+    
+    if (response.ok) {
+      navigate("/categories")
+    } else {
+      console.error(data.error);
+    }
   };
 
   return (

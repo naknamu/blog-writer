@@ -3,6 +3,7 @@ import styled from "styled-components";
 import config from "../config";
 import MarkdownEditor from "../components/MarkdownEditor";
 import { useNavigate } from "react-router";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const FormWrapper = styled.form`
   display: flex;
@@ -53,6 +54,7 @@ const CategoryForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
   const navigate = useNavigate();
+  const { user } = useAuthContext();  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,6 +69,7 @@ const CategoryForm = () => {
       body: JSON.stringify(newCategory),
       headers: {
         "Content-Type": "application/json",
+        'Authorization': `Bearer ${user.token}`
       },
     });
 
