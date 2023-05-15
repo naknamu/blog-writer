@@ -23,6 +23,24 @@ const SidebarWrapper = styled.ul`
   }
 `;
 
+const Logout = styled.button`
+    background: rgb(197, 68, 102);
+    border: 0;
+    color: #fff;
+    padding: 10px;
+    font-family: inherit;
+    border-radius: 4px;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.8;
+    } 
+
+    :active {
+      opacity: 1;
+    }
+`;
+
 const SidebarLinks = () => {
   const navigate = useNavigate();
   const { dispatch } = useAuthContext();
@@ -67,7 +85,7 @@ const SidebarLinks = () => {
         </li>
       </SidebarWrapper>
       <SidebarWrapper>
-          <button onClick={(e) => handleClick(e)}>Log out</button>
+          <Logout onClick={(e) => handleClick(e)}>Log out</Logout>
       </SidebarWrapper>
     </SidebarLink>
   );

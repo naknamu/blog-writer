@@ -48,6 +48,10 @@ const SubmitBtn = styled.button`
   :hover {
     opacity: 0.8;
   }
+
+  :active {
+    opacity: 1;
+  }
 `;
 
 const CategoryForm = () => {

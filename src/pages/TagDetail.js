@@ -19,6 +19,10 @@ const DeleteBtn = styled.button`
     opacity: 0.8;
   }
 
+  :active {
+    opacity: 1;
+  }
+
   a {
     color: white;
   }

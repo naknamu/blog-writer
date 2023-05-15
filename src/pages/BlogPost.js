@@ -21,6 +21,10 @@ const DeleteBtn = styled.button`
     opacity: 0.8;
   }
 
+  :active {
+    opacity: 1;
+  }
+
   a {
     color: white;
   }
@@ -37,6 +41,10 @@ const UpdateBtn = styled.button`
 
   :hover {
     opacity: 0.8;
+  }
+
+  :active {
+    opacity: 1;
   }
 
   a {
@@ -63,6 +71,10 @@ const PublishBtn = styled.button`
 
   :hover {
     opacity: 0.8;
+  }
+
+  :active {
+    opacity: 1;
   }
 `;
 
