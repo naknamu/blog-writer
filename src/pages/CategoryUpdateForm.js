@@ -91,7 +91,7 @@ const CategoryUpdateForm = () => {
         body: JSON.stringify(updateCategory),
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${user.token}`
+          Authorization: `Bearer ${user.token}`,
         },
       }
     );

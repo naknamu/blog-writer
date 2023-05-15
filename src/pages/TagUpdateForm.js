@@ -59,7 +59,7 @@ const TagUpdateForm = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
-  const { user } = useAuthContext();  
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchTag = async () => {
@@ -87,7 +87,7 @@ const TagUpdateForm = () => {
       body: JSON.stringify(updateTag),
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const data = await response.json();

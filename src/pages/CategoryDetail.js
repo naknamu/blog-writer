@@ -62,7 +62,7 @@ const CategoryDetail = () => {
   const [blogPosts, setBlogPosts] = useState(null);
   const { user } = useAuthContext();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchCategory = async () => {
       const response = await fetch(`${config.apiUrl}/categories/${categoryid}`);
@@ -84,14 +84,14 @@ const CategoryDetail = () => {
       {
         method: "POST",
         headers: {
-          'Authorization': `Bearer ${user.token}`
+          Authorization: `Bearer ${user.token}`,
         },
       }
     );
     const data = await response.json();
-    
+
     if (response.ok) {
-      navigate("/categories")
+      navigate("/categories");
     } else {
       console.error(data.error);
     }

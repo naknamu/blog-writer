@@ -136,7 +136,7 @@ const BlogPost = () => {
       body: JSON.stringify(updateBlogPost),
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const data = await response.json();
@@ -152,7 +152,7 @@ const BlogPost = () => {
   const handleDelete = async (postid) => {
     const response = await fetch(`${config.apiUrl}/post/${postid}/delete`, {
       method: "POST",
-      headers: {'Authorization': `Bearer ${user.token}`}
+      headers: { Authorization: `Bearer ${user.token}` },
     });
 
     const data = await response.json();

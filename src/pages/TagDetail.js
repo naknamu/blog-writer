@@ -57,7 +57,7 @@ const TagDetail = () => {
   const [tag, setTag] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
   const navigate = useNavigate();
-  const { user } = useAuthContext();  
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchTag = async () => {
@@ -78,7 +78,7 @@ const TagDetail = () => {
     const response = await fetch(`${config.apiUrl}/tag/${tagid}/delete`, {
       method: "POST",
       headers: {
-        'Authorization': `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
     });
 

@@ -19,10 +19,10 @@ const Home = () => {
   useEffect(() => {
     const fetchAllBlogs = async () => {
       const response = await fetch(config.apiUrl, {
-        headers: {'Authorization': `Bearer ${user.token}`}
+        headers: { Authorization: `Bearer ${user.token}` },
       });
       const data = await response.json();
-      
+
       setBlogs(data.blog_count);
       setCategoris(data.category_count);
       setTags(data.tag_count);

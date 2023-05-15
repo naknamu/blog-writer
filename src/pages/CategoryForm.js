@@ -58,7 +58,7 @@ const CategoryForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
   const navigate = useNavigate();
-  const { user } = useAuthContext();  
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ const CategoryForm = () => {
       body: JSON.stringify(newCategory),
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
     });
 

@@ -58,7 +58,7 @@ const TagForm = () => {
   const [name, setName] = useState("");
   const [detail, setDetail] = useState("");
   const navigate = useNavigate();
-  const { user } = useAuthContext();  
+  const { user } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ const TagForm = () => {
       body: JSON.stringify(newTag),
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
     });
 

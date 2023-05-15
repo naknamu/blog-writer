@@ -30,17 +30,22 @@ const PagesWrapper = styled.div`
 `;
 
 function App() {
-
   const { user } = useAuthContext();
 
   return (
     <AppWrapper>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        { user && <SidebarLinks /> }
+        {user && <SidebarLinks />}
         <PagesWrapper>
           <Routes>
-            <Route path="/login" element={ !user ? <Login /> : <Navigate to="/" /> } />
-            <Route path="/" element={ user ? <Home /> : <Navigate to="/login" /> } />
+            <Route
+              path="/login"
+              element={!user ? <Login /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
             <Route path="/posts" element={<AllBlogs />} />
             <Route path="/categories" element={<AllCategories />} />
             <Route path="/tags" element={<AllTags />} />
