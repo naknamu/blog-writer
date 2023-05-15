@@ -14,9 +14,14 @@ const Home = () => {
   const [users, setUsers] = useState(0);
 
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+
     const fetchAllBlogs = async () => {
-      const response = await fetch(config.apiUrl);
+      const response = await fetch(config.apiUrl, {
+        headers: {'Authorization': `Bearer ${user.token}`}
+      });
       const data = await response.json();
+      
       setBlogs(data.blog_count);
       setCategoris(data.category_count);
       setTags(data.tag_count);
@@ -24,7 +29,9 @@ const Home = () => {
       setUsers(data.user_count);
     };
 
-    fetchAllBlogs();
+    if (user) {
+      fetchAllBlogs();
+    }
   }, []);
   return (
     <HomeStyled>

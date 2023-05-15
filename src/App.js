@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
 
 // pages
@@ -19,6 +19,8 @@ import TagForm from "./pages/TagForm";
 import TagUpdateForm from "./pages/TagUpdateForm";
 import BlogForm from "./pages/BlogForm";
 import BlogUpdateForm from "./pages/BlogUpdateForm";
+import Login from "./pages/Login";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const AppWrapper = styled.div``;
 
@@ -28,13 +30,17 @@ const PagesWrapper = styled.div`
 `;
 
 function App() {
+
+  const { user } = useAuthContext();
+
   return (
     <AppWrapper>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <SidebarLinks />
+        { user && <SidebarLinks /> }
         <PagesWrapper>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/login" element={ !user ? <Login /> : <Navigate to="/" /> } />
+            <Route path="/" element={ user ? <Home /> : <Navigate to="/login" /> } />
             <Route path="/posts" element={<AllBlogs />} />
             <Route path="/categories" element={<AllCategories />} />
             <Route path="/tags" element={<AllTags />} />

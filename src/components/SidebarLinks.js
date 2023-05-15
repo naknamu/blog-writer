@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const SidebarLink = styled.div`
   display: grid;
@@ -22,6 +24,21 @@ const SidebarWrapper = styled.ul`
 `;
 
 const SidebarLinks = () => {
+  const navigate = useNavigate();
+  const { dispatch } = useAuthContext();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    // Remove user in local storage
+    localStorage.removeItem('user');
+
+    // Update auth context state
+    dispatch({type: 'LOGOUT', payload: null})
+
+    navigate("/login");
+  }
+
   return (
     <SidebarLink>
       <SidebarWrapper>
@@ -48,6 +65,9 @@ const SidebarLinks = () => {
         <li>
           <Link to="/tag/create">Create new tag</Link>
         </li>
+      </SidebarWrapper>
+      <SidebarWrapper>
+          <button onClick={(e) => handleClick(e)}>Log out</button>
       </SidebarWrapper>
     </SidebarLink>
   );
