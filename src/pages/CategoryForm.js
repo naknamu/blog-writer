@@ -1,58 +1,9 @@
 import { useState } from "react";
-import styled from "styled-components";
 import config from "../config";
 import MarkdownEditor from "../components/MarkdownEditor";
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
-
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const InputField = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    padding-block: 1rem;
-    font-weight: 700;
-  }
-
-  input {
-    padding: 1rem;
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: inherit;
-    border: 1px solid #fff;
-  }
-
-  input:focus {
-    outline: none;
-    border: 1px solid hsl(175, 98%, 24%);
-  }
-`;
-
-const SubmitBtn = styled.button`
-  align-self: flex-start;
-  padding: 1rem 2rem;
-  border: none;
-  background: hsl(175, 98%, 24%);
-  color: white;
-  font-size: inherit;
-  font-weight: 700;
-  border-radius: 8px;
-  margin-top: 1rem;
-
-  :hover {
-    opacity: 0.8;
-  }
-
-  :active {
-    opacity: 1;
-  }
-`;
+import { InputField, FormWrapper, SubmitBtn } from "../components/StyledComponents";
 
 const CategoryForm = () => {
   const [name, setName] = useState("");
