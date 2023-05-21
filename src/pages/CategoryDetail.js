@@ -2,59 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import config from "../config";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import MarkdownPreview from "../components/MarkdownPreview";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useNavigate } from "react-router";
-
-const DeleteBtn = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  background: hsla(344, 53%, 62%, 1);
-  font-size: inherit;
-  font-weight: 700;
-  border-radius: 8px;
-
-  :hover {
-    opacity: 0.8;
-  }
-
-  :active {
-    opacity: 1;
-  }
-
-  a {
-    color: white;
-  }
-`;
-
-const UpdateBtn = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  background: hsl(175, 98%, 24%);
-  font-size: inherit;
-  font-weight: 700;
-  border-radius: 8px;
-  color: white;
-
-  :hover {
-    opacity: 0.8;
-  }
-
-  :active {
-    opacity: 1;
-  }
-
-  a {
-    color: white;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-`;
+import { DeleteBtn, UpdateBtn, ButtonWrapper } from "../components/StyledComponents";
 
 const CategoryDetail = () => {
   const { categoryid } = useParams();

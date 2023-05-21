@@ -6,57 +6,9 @@ import styled from "styled-components";
 import MarkdownPreview from "../components/MarkdownPreview";
 import { useNavigate } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { DeleteBtn, UpdateBtn, ButtonWrapper } from "../components/StyledComponents";
 
 const { DateTime } = require("luxon");
-
-const DeleteBtn = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  background: hsla(344, 53%, 52%, 1);
-  font-size: inherit;
-  font-weight: 700;
-  border-radius: 8px;
-
-  :hover {
-    opacity: 0.8;
-  }
-
-  :active {
-    opacity: 1;
-  }
-
-  a {
-    color: white;
-  }
-`;
-
-const UpdateBtn = styled.button`
-  padding: 1rem 2rem;
-  border: none;
-  background: hsl(175, 98%, 24%);
-  font-size: inherit;
-  font-weight: 700;
-  border-radius: 8px;
-  color: white;
-
-  :hover {
-    opacity: 0.8;
-  }
-
-  :active {
-    opacity: 1;
-  }
-
-  a {
-    color: white;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 2rem;
-  margin-top: 3rem;
-`;
 
 const PublishBtn = styled.button`
   width: fit-content;
@@ -68,6 +20,7 @@ const PublishBtn = styled.button`
   font-size: 1rem;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
 
   :hover {
     opacity: 0.8;

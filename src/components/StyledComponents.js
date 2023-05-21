@@ -39,6 +39,7 @@ const SubmitBtn = styled.button`
   font-weight: 700;
   border-radius: 8px;
   margin-top: 1rem;
+  cursor: pointer;
 
   :hover {
     opacity: 0.8;
@@ -49,8 +50,62 @@ const SubmitBtn = styled.button`
   }
 `;
 
+const DeleteBtn = styled.button`
+  padding: 1rem 2rem;
+  border: none;
+  background: hsla(344, 53%, 52%, 1);
+  font-size: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+  :active {
+    opacity: 1;
+  }
+
+  a {
+    color: white;
+  }
+`;
+
+const UpdateBtn = styled.button`
+  padding: 1rem 2rem;
+  border: none;
+  background: hsl(175, 98%, 24%);
+  font-size: inherit;
+  font-weight: 700;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.8;
+  }
+
+  :active {
+    opacity: 1;
+  }
+
+  a {
+    color: white;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+`;
+
 export { 
     FormWrapper,
     InputField, 
     SubmitBtn,
+    DeleteBtn,
+    UpdateBtn,
+    ButtonWrapper
 };
