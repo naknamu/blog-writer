@@ -27,6 +27,7 @@ const AppWrapper = styled.div``;
 const PagesWrapper = styled.div`
   padding-inline: 15rem;
   margin-bottom: 5rem;
+  max-width: 1200px;
 `;
 
 function App() {
