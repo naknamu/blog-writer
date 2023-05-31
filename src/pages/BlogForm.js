@@ -27,6 +27,7 @@ const SelectField = styled.div`
 const TagsField = styled.div`
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 
   div > * {
     padding-inline: 5px;
