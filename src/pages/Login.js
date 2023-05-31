@@ -4,31 +4,46 @@ import { useNavigate } from "react-router";
 import { useAuthContext } from "../hooks/useAuthContext";
 import styled from "styled-components";
 
+const Center = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
 const LoginForm = styled.form`
   max-width: 400px;
   margin: 40px auto;
   padding: 20px;
-  background: #fff;
+  background: rgb(13, 17, 23);
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 
   input {
-    padding: 10px;
+    padding: 16px;
     margin-top: 10px;
     margin-bottom: 20px;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid #24292f;
     border-radius: 4px;
     box-sizing: border-box;
+    background: #24292f;
+    font-size: 16px;
+    font-family: inherit;
   }
 
   button {
-    background: #1aac83;
+    background: #484f58;
     border: 0;
     color: #fff;
     padding: 10px;
     font-family: inherit;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    margin-top: 1rem;
   }
 
   button:hover {
@@ -87,7 +102,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <Center>
       <LoginForm onSubmit={(e) => handleSubmit(e)}>
         <div className="input-field">
           <label htmlFor="email">Email: </label>
@@ -114,7 +129,7 @@ const Login = () => {
         </button>
         <p className={error ? "error" : ""}>{error}</p>
       </LoginForm>
-    </div>
+    </Center>
   );
 };
 

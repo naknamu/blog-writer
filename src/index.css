@@ -9,6 +9,7 @@
   --pine-green: hsl(175, 98%, 24%);
   --cinnamon-satin: hsla(344, 53%, 62%, 1);
   --light-gray: rgb(209, 213, 219);
+  --dark-bg: rgb(13, 17, 23);
 }
 
 html {
@@ -34,5 +35,6 @@ img {
 }
 
 input, select {
-  background: var(--light-gray);;
+  background: var(--dark-bg);
+  color: rgb(201, 209, 217);
 }
