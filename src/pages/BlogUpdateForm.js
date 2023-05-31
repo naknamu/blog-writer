@@ -38,6 +38,12 @@ const TagsField = styled.div`
   }
 `;
 
+const PublishField = styled.div`
+  input {
+    transform: scale(1.2);
+  }
+`;
+
 const BlogUpdateForm = () => {
   const { postid } = useParams();
   const [title, setTitle] = useState("");
@@ -45,6 +51,7 @@ const BlogUpdateForm = () => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [bannerUrl, setBannerUrl] = useState("");
+  const [publishedStatus, setPublishedStatus] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState("");
   const [checkedTags, setCheckedTags] = useState([]);
@@ -60,6 +67,7 @@ const BlogUpdateForm = () => {
       content,
       category: selectedCategory,
       tags: checkedTags,
+      published: publishedStatus,
       image_url: bannerUrl,
     };
 
@@ -96,6 +104,17 @@ const BlogUpdateForm = () => {
     }
   };
 
+  // For Publish Checkbox
+  const handlePublish = (e) => {
+    let isChecked = e.target.checked;
+
+    if (isChecked) {
+      setPublishedStatus(true);
+    } else {
+      setPublishedStatus(false);
+    }
+  }
+
   useEffect(() => {
     const fetchPost = async () => {
       const response = await fetch(`${config.apiUrl}/post/${postid}/update`);
@@ -106,6 +125,7 @@ const BlogUpdateForm = () => {
       setSelectedCategory(data.category);
       setCheckedTags(data.tags);
       setBannerUrl(data.image_url);
+      setPublishedStatus(data.published);
 
       console.log(data);
     };
@@ -189,6 +209,18 @@ const BlogUpdateForm = () => {
             required
           />
         </InputField>
+
+        <PublishField>
+          <label htmlFor="publishedStatus">Published: </label>
+          <input
+            type="checkbox"
+            name="published"
+            id="publishedStatus"
+            checked={publishedStatus}
+            onChange={(e) => handlePublish(e)}
+            required
+          />
+        </PublishField>
 
         <InputField>
           <label htmlFor="content">Content:</label>
