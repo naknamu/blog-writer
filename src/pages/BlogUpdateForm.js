@@ -218,7 +218,6 @@ const BlogUpdateForm = () => {
             id="publishedStatus"
             checked={publishedStatus}
             onChange={(e) => handlePublish(e)}
-            required
           />
         </PublishField>
 
