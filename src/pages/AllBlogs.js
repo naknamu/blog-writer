@@ -27,7 +27,7 @@ const AllBlogs = () => {
       <h1>All blogs</h1>
       {blogs.map((blog) => (
         <li key={blog._id}>
-          <Link to={`/posts/${blog._id}`}>{blog.title}</Link>: (
+          <Link to={`/posts/${blog.slug}`}>{blog.title}</Link>: (
           {blog.published.toString()})
         </li>
       ))}

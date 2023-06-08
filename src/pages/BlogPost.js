@@ -39,14 +39,14 @@ const StatusWrapper = styled.div`
 `;
 
 const BlogPost = () => {
-  const { postid } = useParams();
+  const { slug } = useParams();
   const [blogPost, setBlogPost] = useState(null);
   const [isPublished, setIsPublished] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuthContext();
 
   const fetchBlogPost = async () => {
-    const response = await fetch(`${config.apiUrl}/posts/${postid}`);
+    const response = await fetch(`${config.apiUrl}/posts/${slug}`);
     const data = await response.json();
 
     setBlogPost(data);
@@ -56,7 +56,7 @@ const BlogPost = () => {
   useEffect(() => {
     fetchBlogPost();
     // eslint-disable-next-line
-  }, [postid]);
+  }, [slug]);
 
   if (!blogPost) {
     return <div>Loading....</div>;
@@ -84,7 +84,7 @@ const BlogPost = () => {
       image_url: blogPost.image_url,
     };
 
-    const response = await fetch(`${config.apiUrl}/post/${postid}/update`, {
+    const response = await fetch(`${config.apiUrl}/post/${blogPost._id}/update`, {
       method: "POST",
       body: JSON.stringify(updateBlogPost),
       headers: {
@@ -146,7 +146,7 @@ const BlogPost = () => {
       </div>
 
       <div style={{ marginTop: "2rem" }}>
-        <Link to={`/posts/${postid}/comments/`}>See All Comments</Link>
+        <Link to={`/posts/${blogPost._id}/comments/`}>See All Comments</Link>
       </div>
 
       <StatusWrapper>

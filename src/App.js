@@ -51,7 +51,7 @@ function App() {
             <Route path="/categories" element={<AllCategories />} />
             <Route path="/tags" element={<AllTags />} />
 
-            <Route path="/posts/:postid" element={<BlogPost />} />
+            <Route path="/posts/:slug" element={<BlogPost />} />
             <Route path="/posts/:postid/comments" element={<AllComments />} />
             <Route path="/post/create" element={<BlogForm />} />
             <Route path="/posts/:postid/update" element={<BlogUpdateForm />} />
