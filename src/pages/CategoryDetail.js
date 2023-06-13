@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { DeleteBtn, UpdateBtn, ButtonWrapper } from "../components/StyledComponents";
 
 const CategoryDetail = () => {
-  const { categoryid } = useParams();
+  const { slug } = useParams();
   const [category, setCategory] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
   const { user } = useAuthContext();
@@ -16,14 +16,14 @@ const CategoryDetail = () => {
 
   useEffect(() => {
     const fetchCategory = async () => {
-      const response = await fetch(`${config.apiUrl}/categories/${categoryid}`);
+      const response = await fetch(`${config.apiUrl}/categories/${slug}`);
       const data = await response.json();
 
       setCategory(data.category);
       setBlogPosts(data.blogPosts);
     };
     fetchCategory();
-  }, [categoryid]);
+  }, [slug]);
 
   if (!category && !blogPosts) {
     return <div>Loading....</div>;
@@ -58,7 +58,7 @@ const CategoryDetail = () => {
       <h2>Blog posts under this category:</h2>
       {blogPosts.map((blog) => (
         <li key={blog._id}>
-          <Link to={`/posts/${blog._id}`}>{blog.title}</Link>
+          <Link to={`/posts/${blog.slug}`}>{blog.title}</Link>
         </li>
       ))}
 

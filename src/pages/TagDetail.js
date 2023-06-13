@@ -8,7 +8,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { DeleteBtn, UpdateBtn, ButtonWrapper } from "../components/StyledComponents";
 
 const TagDetail = () => {
-  const { tagid } = useParams();
+  const { slug } = useParams();
   const [tag, setTag] = useState(null);
   const [blogPosts, setBlogPosts] = useState(null);
   const navigate = useNavigate();
@@ -16,14 +16,14 @@ const TagDetail = () => {
 
   useEffect(() => {
     const fetchTag = async () => {
-      const response = await fetch(`${config.apiUrl}/tags/${tagid}`);
+      const response = await fetch(`${config.apiUrl}/tags/${slug}`);
       const data = await response.json();
 
       setTag(data.tag);
       setBlogPosts(data.blogPosts);
     };
     fetchTag();
-  }, [tagid]);
+  }, [slug]);
 
   if (!tag && !blogPosts) {
     return <div>Loading....</div>;
@@ -56,7 +56,7 @@ const TagDetail = () => {
       <h2>Blog posts under this tag: </h2>
       {blogPosts.map((blog) => (
         <li key={blog._id}>
-          <Link to={`/posts/${blog._id}`}>{blog.title}</Link>
+          <Link to={`/posts/${blog.slug}`}>{blog.title}</Link>
         </li>
       ))}
 

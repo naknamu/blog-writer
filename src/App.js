@@ -56,12 +56,12 @@ function App() {
             <Route path="/post/create" element={<BlogForm />} />
             <Route path="/posts/:postid/update" element={<BlogUpdateForm />} />
 
-            <Route path="/tags/:tagid/:title" element={<TagDetail />} />
+            <Route path="/tags/:slug" element={<TagDetail />} />
             <Route path="/tag/create" element={<TagForm />} />
             <Route path="/tag/:tagid/update" element={<TagUpdateForm />} />
 
             <Route
-              path="/categories/:categoryid/:title"
+              path="/categories/:slug"
               element={<CategoryDetail />}
             />
             <Route path="/category/create" element={<CategoryForm />} />
