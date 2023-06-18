@@ -84,7 +84,7 @@ const BlogUpdateForm = () => {
 
     if (response.ok) {
       // Redirect updated blog post
-      navigate(`/posts/${postid}/`);
+      navigate(`/posts`);
     } else {
       console.error(data.error);
     }
